@@ -1,65 +1,157 @@
-import Image from "next/image";
+import Link from 'next/link'
+import { portfolioManagementTopics } from '@/data/portfolio-management'
+import { ethicsTopics } from '@/data/ethics-professional-standards'
 
-export default function Home() {
+const difficultyColorMap = {
+  easy: 'bg-green-900/50 text-green-300',
+  medium: 'bg-yellow-900/50 text-yellow-300',
+  hard: 'bg-red-900/50 text-red-300',
+}
+
+function getTopicDifficulty(conceptCount: number): 'easy' | 'medium' | 'hard' {
+  if (conceptCount <= 4) return 'easy'
+  if (conceptCount <= 7) return 'medium'
+  return 'hard'
+}
+
+export default function HomePage() {
+  const totalConcepts = portfolioManagementTopics.reduce((sum, t) => sum + t.concepts.length, 0)
+  const totalFormulas = portfolioManagementTopics.reduce(
+    (sum, t) => sum + t.concepts.filter(c => c.formula).length, 0
+  )
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="space-y-8">
+      {/* Header */}
+      <div className="space-y-3">
+        <div className="flex items-center gap-3 flex-wrap">
+          <h1 className="text-3xl font-bold text-white">Portfolio Management</h1>
+          <span className="text-sm bg-blue-900/60 text-blue-300 border border-blue-700/50 px-3 py-1 rounded-full font-medium">
+            5-8% Exam Weight
+          </span>
+        </div>
+        <p className="text-gray-400 text-base leading-relaxed max-w-2xl">
+          Comprehensive study materials for CFA Level 1 Portfolio Management. Master the concepts, understand the exam angles, and practice with AI-generated questions.
+        </p>
+        <div className="flex gap-4 text-sm text-gray-500">
+          <span>{portfolioManagementTopics.length} topics</span>
+          <span>•</span>
+          <span>{totalConcepts} concepts</span>
+          <span>•</span>
+          <span>{totalFormulas} formulas</span>
+        </div>
+      </div>
+
+      {/* Topic Cards Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+        {portfolioManagementTopics.map(topic => {
+          const difficulty = getTopicDifficulty(topic.concepts.length)
+          const formulaCount = topic.concepts.filter(c => c.formula).length
+
+          return (
+            <Link
+              key={topic.id}
+              href={`/topic/${topic.id}`}
+              className="group bg-gray-900 border border-gray-800 hover:border-gray-600 rounded-xl p-5 transition-all hover:bg-gray-900/80 space-y-3"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              <div className="flex items-start justify-between gap-2">
+                <h2 className="text-white font-semibold text-base leading-snug group-hover:text-blue-300 transition-colors">
+                  {topic.title}
+                </h2>
+                <span className={`shrink-0 text-xs px-2 py-0.5 rounded-full font-medium ${difficultyColorMap[difficulty]}`}>
+                  {difficulty}
+                </span>
+              </div>
+
+              <p className="text-gray-400 text-sm leading-relaxed line-clamp-2">
+                {topic.description}
+              </p>
+
+              <div className="flex items-center justify-between pt-1">
+                <div className="flex gap-3 text-xs text-gray-500">
+                  <span>{topic.concepts.length} concepts</span>
+                  {formulaCount > 0 && <span>{formulaCount} formulas</span>}
+                </div>
+                <span className="text-xs text-blue-500 group-hover:text-blue-400 transition-colors">
+                  Study &rarr;
+                </span>
+              </div>
+            </Link>
+          )
+        })}
+      </div>
+
+      {/* Action Buttons */}
+      <div className="flex flex-wrap gap-3 pt-2">
+        <Link
+          href="/formulas"
+          className="bg-amber-600/20 hover:bg-amber-600/30 border border-amber-600/40 text-amber-300 font-medium text-sm px-5 py-2.5 rounded-xl transition-colors"
+        >
+          Cheat Sheet
+        </Link>
+      </div>
+
+      {/* Divider */}
+      <div className="border-t border-gray-800 pt-8 space-y-6">
+        {/* Ethics Header */}
+        <div className="space-y-3">
+          <div className="flex items-center gap-3 flex-wrap">
+            <Link href="/ethics" className="text-3xl font-bold text-white hover:text-violet-300 transition-colors">
+              Ethics &amp; Professional Standards
+            </Link>
+            <span className="text-sm bg-violet-900/60 text-violet-300 border border-violet-700/50 px-3 py-1 rounded-full font-medium">
+              10-15% Exam Weight
+            </span>
+          </div>
+          <p className="text-gray-400 text-base leading-relaxed max-w-2xl">
+            The most important section for passing. Each standard includes a realistic case scenario with verdict and reasoning.
           </p>
+          <div className="flex gap-4 text-sm text-gray-500">
+            <span>{ethicsTopics.length} standard groups</span>
+            <span>•</span>
+            <span>{ethicsTopics.reduce((s, t) => s + t.concepts.length, 0)} individual standards</span>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Ethics Topic Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+          {ethicsTopics.map(topic => {
+            const formulaCount = topic.concepts.filter(c => c.formula).length
+            return (
+              <Link
+                key={topic.id}
+                href={`/topic/${topic.id}`}
+                className="group bg-gray-900 border border-gray-800 hover:border-violet-700/60 rounded-xl p-5 transition-all hover:bg-gray-900/80 space-y-3"
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <h2 className="text-white font-semibold text-base leading-snug group-hover:text-violet-300 transition-colors">
+                    {topic.title}
+                  </h2>
+                </div>
+                <p className="text-gray-400 text-sm leading-relaxed line-clamp-2">
+                  {topic.description}
+                </p>
+                <div className="flex items-center justify-between pt-1">
+                  <div className="flex gap-3 text-xs text-gray-500">
+                    <span>{topic.concepts.length} standards</span>
+                    {formulaCount > 0 && <span>{formulaCount} codes</span>}
+                  </div>
+                  <span className="text-xs text-violet-500 group-hover:text-violet-400 transition-colors">
+                    Study &rarr;
+                  </span>
+                </div>
+              </Link>
+            )
+          })}
         </div>
-      </main>
+
+        <Link
+          href="/ethics"
+          className="inline-flex items-center gap-2 bg-violet-600/20 hover:bg-violet-600/30 border border-violet-600/40 text-violet-300 font-medium text-sm px-5 py-2.5 rounded-xl transition-colors"
+        >
+          View Ethics Overview &rarr;
+        </Link>
+      </div>
     </div>
-  );
+  )
 }
