@@ -31,7 +31,7 @@ export default function HomePage() {
           </span>
         </div>
         <p className="text-gray-400 text-base leading-relaxed max-w-2xl">
-          Comprehensive study materials for CFA Level 1 Portfolio Management. Master the concepts, understand the exam angles, and practice with AI-generated questions.
+          Quick revision summarised with first principles for CFA Level 1. Master the concepts, understand the exam angles with key points.
         </p>
         <div className="flex gap-4 text-sm text-gray-500">
           <span>{portfolioManagementTopics.length} topics</span>
