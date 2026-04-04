@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Geist } from 'next/font/google'
 import Link from 'next/link'
+import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import TopicNav from '@/components/TopicNav'
 
@@ -10,8 +11,13 @@ const geist = Geist({
 })
 
 export const metadata: Metadata = {
-  title: 'CFA Level 1 Study App',
-  description: 'Portfolio Management study tool for CFA Level 1 candidates',
+  title: 'CFA L1 Revision Tool',
+  description: 'A structured CFA Level 1 revision tool covering Portfolio Management and Ethics & Professional Standards. Each concept includes first principles, formulas, exam angles, and worked examples.',
+  openGraph: {
+    title: 'CFA L1 Revision Tool',
+    description: 'Structured revision for CFA Level 1 — first principles, formulas, exam angles, worked examples. Covers Portfolio Management and Ethics.',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({
@@ -60,6 +66,7 @@ export default function RootLayout({
             </main>
           </div>
         </div>
+        <Analytics />
       </body>
     </html>
   )
