@@ -19,6 +19,7 @@ export interface Concept {
     verdict: string
     reasoning: string
   }
+  mindMap?: string       // Preformatted ASCII mind map
 }
 
 export interface Topic {

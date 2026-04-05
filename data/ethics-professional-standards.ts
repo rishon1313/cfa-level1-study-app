@@ -2,6 +2,228 @@ import { Topic } from '@/lib/types'
 
 export const ethicsTopics: Topic[] = [
   {
+    id: 'ethics-framework',
+    title: 'Ethics Framework: Codes vs Standards',
+    description: 'Understand the architecture of CFA ethics before diving into individual rules — why there are two layers and how they relate.',
+    examWeight: '10-15%',
+    concepts: [
+      {
+        id: 'code-vs-standards-distinction',
+        topicId: 'ethics-framework',
+        title: 'Code of Ethics vs Professional Standards',
+        firstPrinciple: 'The Code of Ethics defines who you are — broad, timeless values that apply in every jurisdiction and every situation. The Standards of Professional Conduct define what you do — specific, enforceable rules that translate those values into concrete behaviour. You cannot violate a Standard without implicitly violating a Code, but you can violate the spirit of a Code while technically following the Standards.',
+        examAngle: 'Exam questions almost always test Standards — they give a vignette with a specific action and ask which Standard is violated. Code questions are rarer and typically ask you to identify which Code statement a behaviour undermines. The 3-second filter: specific action = Standard, abstract principle = Code.',
+        keyPoints: [
+          'Code = the WHY (values, aspirational, timeless) — 6 broad statements',
+          'Standards = the HOW (rules, enforceable, fact-pattern tested) — 7 standards with sub-standards',
+          'Think: Code is the constitution, Standards are the legislation',
+          'Every Standard violation is also a Code violation — not vice versa',
+          '3-second exam filter: specific action → Standard; abstract principle → Code',
+          'Codes do not change with jurisdiction; Standards may require stricter local law compliance'
+        ],
+        difficulty: 'medium',
+        tags: ['framework', 'code of ethics', 'standards', 'exam strategy'],
+        mindMap: `CFA ETHICS FRAMEWORK
+│
+├── CODE OF ETHICS  ("WHO YOU ARE")
+│   Broad value statements. Aspirational. 6 codes.
+│   Cannot be enforced in isolation — they set the spirit.
+│
+│   ├── Code 1 → Integrity + Competence + Respect (toward everyone)
+│   ├── Code 2 → Profession & Clients ABOVE self
+│   ├── Code 3 → Reasonable Care + Independent Judgment
+│   ├── Code 4 → Reflect credit on the profession + lift others
+│   ├── Code 5 → Protect market integrity (society-level)
+│   └── Code 6 → Maintain & improve your own competence
+│
+└── STANDARDS OF PROFESSIONAL CONDUCT  ("WHAT YOU DO")
+    Specific rules. Enforceable. Fact-pattern tested on exam.
+
+    ├── Standard I: PROFESSIONALISM
+    │   ├── I(A)  Know the Law
+    │   ├── I(B)  Independence & Objectivity
+    │   ├── I(C)  Misrepresentation
+    │   └── I(D)  Misconduct
+    │
+    ├── Standard II: INTEGRITY OF MARKETS
+    │   ├── II(A) Material Nonpublic Information
+    │   └── II(B) Market Manipulation
+    │
+    ├── Standard III: DUTIES TO CLIENTS
+    │   ├── III(A) Loyalty, Prudence & Care
+    │   ├── III(B) Fair Dealing
+    │   ├── III(C) Suitability
+    │   ├── III(D) Performance Presentation
+    │   └── III(E) Preservation of Confidentiality
+    │
+    ├── Standard IV: DUTIES TO EMPLOYERS
+    │   ├── IV(A) Loyalty
+    │   ├── IV(B) Additional Compensation Arrangements
+    │   └── IV(C) Responsibilities of Supervisors
+    │
+    ├── Standard V: INVESTMENT ANALYSIS & RECOMMENDATIONS
+    │   ├── V(A) Diligence & Reasonable Basis
+    │   ├── V(B) Communication with Clients & Prospects
+    │   └── V(C) Record Retention
+    │
+    ├── Standard VI: CONFLICTS OF INTEREST
+    │   ├── VI(A) Disclosure of Conflicts
+    │   ├── VI(B) Priority of Transactions
+    │   └── VI(C) Referral Fees
+    │
+    └── Standard VII: RESPONSIBILITIES AS CFA MEMBER/CANDIDATE
+        ├── VII(A) Conduct as Member/Candidate
+        └── VII(B) Reference to CFA Program`
+      }
+    ]
+  },
+  {
+    id: 'ethics-codes-of-ethics',
+    title: 'The Six Codes of Ethics',
+    description: 'The foundational principles every CFA member and candidate must uphold. The Codes precede and underpin all seven Standards of Professional Conduct.',
+    examWeight: '10-15%',
+    concepts: [
+      {
+        id: 'code-1-integrity-competence',
+        topicId: 'ethics-codes-of-ethics',
+        title: 'Code 1: Integrity, Competence & Respect',
+        firstPrinciple: 'Every interaction in the investment profession — with clients, employers, colleagues, or the public — must reflect integrity and competence. Finance is built on trust, and trust is built person by person, interaction by interaction. Cutting corners on competence or respect erodes the entire system.',
+        formula: 'Code 1',
+        examAngle: 'Tested by asking whether a member\'s behaviour toward clients, the public, or colleagues reflects integrity and respect. Any deceptive, dismissive, or incompetent conduct violates this code. Often combined with Standard I(C) Misrepresentation.',
+        keyPoints: [
+          'Act with integrity, competence, diligence, and respect in ALL professional interactions',
+          'Covers interactions with: public, clients, prospective clients, employers, employees, colleagues',
+          'Also applies to participants in the global capital markets broadly',
+          'Competence requires ongoing learning — not just passing the exam once',
+          'Disrespectful or dismissive conduct toward any market participant is a violation'
+        ],
+        difficulty: 'medium',
+        tags: ['integrity', 'competence', 'respect', 'professionalism'],
+        scenario: {
+          situation: 'A CFA charterholder dismisses a retail client\'s questions with "you wouldn\'t understand the complexity involved" and proceeds to execute a transaction without adequately explaining the risks, citing time pressure.',
+          question: 'Which Code is most directly violated?',
+          verdict: 'Violation',
+          reasoning: 'Code 1 requires acting with respect and competence toward all clients including retail investors. Dismissing the client\'s legitimate questions and failing to explain risks violates both the respect and competence dimensions. The time pressure justification is irrelevant — professional obligations do not yield to convenience.'
+        }
+      },
+      {
+        id: 'code-2-client-profession-first',
+        topicId: 'ethics-codes-of-ethics',
+        title: 'Code 2: Profession & Client Interests Above Own',
+        firstPrinciple: 'When your personal interest conflicts with the interest of the profession or a client, your personal interest loses — always. This is the price of being a fiduciary. The moment professionals start serving themselves at clients\' expense, the entire premise of the advisory relationship collapses.',
+        formula: 'Code 2',
+        examAngle: 'Tested through conflict-of-interest scenarios: front-running, prioritising personal trades, recommending products with higher commissions over better alternatives. The order of priority is: (1) integrity of the profession, (2) client interests, (3) personal interests.',
+        keyPoints: [
+          'Priority order: profession integrity → client interests → personal interests',
+          'Personal financial gain must never drive investment recommendations',
+          'Applies even when the client would not discover the conflict',
+          'Closely linked to Standard VI(B): Priority of Transactions',
+          'Not just about avoiding violations — requires actively placing clients first'
+        ],
+        difficulty: 'medium',
+        tags: ['client interests', 'fiduciary', 'conflicts', 'priority'],
+        scenario: {
+          situation: 'A portfolio manager identifies an undervalued small-cap stock through her research. Before publishing the recommendation to clients, she purchases shares in her personal account, reasoning that clients will benefit anyway once the price rises.',
+          question: 'Which Code is violated, and why?',
+          verdict: 'Violation',
+          reasoning: 'Code 2 requires placing client interests above personal interests. By trading ahead of clients, the manager puts her own gain first — and her trading may even move the price against clients. This is also a front-running violation under Standard VI(B). The fact that clients will "still benefit" does not justify the self-serving sequence.'
+        }
+      },
+      {
+        id: 'code-3-independent-judgment',
+        topicId: 'ethics-codes-of-ethics',
+        title: 'Code 3: Reasonable Care & Independent Judgment',
+        firstPrinciple: 'Every investment action must be grounded in careful analysis and honest, independent thinking — not in what the client wants to hear, what the firm wants to sell, or what the market consensus says. Independent judgment is the analyst\'s core value-add; without it, you are just a salesperson.',
+        formula: 'Code 3',
+        examAngle: 'Tested when members rely on others\' work without verification, cave to pressure to change recommendations, or fail to perform adequate due diligence. Key phrase: "reasonable care" — you don\'t need to be perfect, but you must do what a reasonably diligent professional would do.',
+        keyPoints: [
+          'Apply reasonable care to: analysis, recommendations, investment actions, all professional activities',
+          '"Reasonable care" is an objective standard — what would a competent professional do?',
+          'Independent judgment means not being swayed by client pressure, employer pressure, or market consensus',
+          'Using third-party research is acceptable if you exercise judgment in evaluating it',
+          'Applies to ALL professional activities, not just client-facing ones'
+        ],
+        difficulty: 'medium',
+        tags: ['due diligence', 'independent judgment', 'reasonable care', 'analysis'],
+        scenario: {
+          situation: 'An analyst publishes a sell rating on a stock. The company\'s CEO calls the analyst\'s manager and threatens to cut off investor relations access unless the rating is upgraded. The manager asks the analyst to "reconsider" the rating. The analyst changes it to hold without conducting any new analysis.',
+          question: 'Which Code is violated?',
+          verdict: 'Violation',
+          reasoning: 'Code 3 requires independent professional judgment. Changing a rating under external pressure — without new analysis or information — directly violates this code. The analyst\'s conclusion is now driven by access concerns rather than honest evaluation. Code 1 (integrity) and Standard I(B) (independence) are also implicated.'
+        }
+      },
+      {
+        id: 'code-4-reflect-credit',
+        topicId: 'ethics-codes-of-ethics',
+        title: 'Code 4: Professional & Ethical Practice',
+        firstPrinciple: 'Every CFA member is a representative of the profession. Your conduct — good or bad — reflects on every other member. The obligation to practice ethically extends beyond yourself: you must also encourage ethical practice in others. A profession polices itself or it gets policed.',
+        formula: 'Code 4',
+        examAngle: 'Tested in scenarios involving supervisory responsibilities and encouraging others. If you know a colleague is acting unethically and do nothing, that itself can be a violation. Closely linked to Standard IV(C): Responsibilities of Supervisors.',
+        keyPoints: [
+          'Must practice in a way that reflects credit on yourself AND the profession',
+          'Actively encourage others to practice professionally and ethically',
+          'Supervisors have a heightened duty — must establish and enforce compliance procedures',
+          'Remaining silent when aware of colleagues\' ethical violations can itself be a violation',
+          'The standard is not just "avoid misconduct" but "actively uphold the profession"'
+        ],
+        difficulty: 'medium',
+        tags: ['professionalism', 'supervision', 'colleague conduct', 'reputation'],
+        scenario: {
+          situation: 'A senior CFA charterholder is aware that a junior analyst on his team is plagiarising third-party research reports and presenting them as original analysis to clients. He takes no action because "it\'s not my place to police my colleagues" and the junior analyst doesn\'t report to him.',
+          question: 'Does the senior charterholder violate Code 4?',
+          verdict: 'Violation',
+          reasoning: 'Code 4 requires encouraging ethical practice in others, not just avoiding misconduct yourself. Awareness of a colleague\'s plagiarism (a violation of Standard I(C)) and choosing to ignore it fails this duty. The fact that the junior analyst doesn\'t formally report to him is irrelevant — the obligation to uphold professional standards is not limited to those in your direct reporting line.'
+        }
+      },
+      {
+        id: 'code-5-market-integrity',
+        topicId: 'ethics-codes-of-ethics',
+        title: 'Code 5: Promote Market Integrity',
+        firstPrinciple: 'Capital markets only function if participants trust them. Every act of manipulation, insider trading, or misinformation — however small — degrades that trust and ultimately harms society\'s ability to allocate capital efficiently. CFA members are explicitly obligated to protect this public good, not just follow the rules.',
+        formula: 'Code 5',
+        examAngle: 'Tested in market manipulation and MNPI scenarios. The key distinction: this code is about the broader market and society — not just individual clients. Actions that are technically legal but damage market integrity (e.g., aggressive spoofing, spreading rumours) can still violate this code.',
+        keyPoints: [
+          'Obligation extends beyond clients to the integrity of global capital markets',
+          'Ultimate beneficiary is society — markets must work for everyone, not just insiders',
+          'Covers both outright manipulation and subtler integrity-damaging behaviour',
+          'Refusing to trade on MNPI protects market fairness even when enforcement is weak',
+          'Linked to Standard II(A): Material Nonpublic Information and II(B): Market Manipulation'
+        ],
+        difficulty: 'medium',
+        tags: ['market integrity', 'manipulation', 'MNPI', 'society', 'capital markets'],
+        scenario: {
+          situation: 'A hedge fund manager spreads unverified negative rumours about a competitor\'s fund to institutional investors, hoping to trigger redemptions that will depress the competitor\'s portfolio holdings — assets the manager is short.',
+          question: 'Which Code is most directly violated?',
+          verdict: 'Violation',
+          reasoning: 'Code 5 requires promoting the integrity of global capital markets. Deliberately spreading false rumours to move prices for personal profit is a textbook example of market manipulation that degrades market integrity. This also violates Standard II(B): Market Manipulation. The conduct harms not just the competitor but all investors who rely on fair and transparent markets.'
+        }
+      },
+      {
+        id: 'code-6-maintain-competence',
+        topicId: 'ethics-codes-of-ethics',
+        title: 'Code 6: Maintain & Improve Professional Competence',
+        firstPrinciple: 'Passing the CFA exams grants a licence to practise, not a permanent certification of competence. Markets evolve, regulations change, and new instruments emerge. The obligation to stay competent is ongoing — and extends to helping the broader profession improve, not just yourself.',
+        formula: 'Code 6',
+        examAngle: 'Tested in scenarios where members practise in areas outside their expertise without disclosure, or fail to keep current with developments relevant to their role. Key: competence is both about depth (knowing your area) and currency (staying up to date). Strive to improve competence of others too.',
+        keyPoints: [
+          'Maintain your own competence — keep current with relevant developments in your field',
+          'Strive to improve the competence of other investment professionals',
+          'Practising outside your area of competence without disclosure violates this code',
+          'Continuing education is a professional obligation, not optional',
+          'Competence includes both technical knowledge and understanding of evolving market practices'
+        ],
+        difficulty: 'medium',
+        tags: ['competence', 'continuing education', 'professional development', 'expertise'],
+        scenario: {
+          situation: 'A fixed income specialist is asked by her firm to cover a new cryptocurrency portfolio after a colleague leaves unexpectedly. She has no experience with crypto assets but accepts without informing clients of her limited expertise, reasoning she can "learn on the job."',
+          question: 'Does this violate Code 6?',
+          verdict: 'Violation',
+          reasoning: 'Code 6 requires maintaining competence in areas where you practise. Accepting responsibility for an asset class you lack expertise in — without disclosing this limitation to clients — violates the duty to maintain professional competence. She should either decline, disclose her limitations to clients, or seek immediate supervision from someone with relevant expertise while she develops it.'
+        }
+      }
+    ]
+  },
+  {
     id: 'ethics-professionalism',
     title: 'Standards I: Professionalism',
     description: 'Covers knowledge of law, independence and objectivity, misrepresentation, and misconduct. The foundation of professional behavior in finance.',

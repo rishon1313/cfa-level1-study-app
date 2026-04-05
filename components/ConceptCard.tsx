@@ -18,6 +18,7 @@ const difficultyColors = {
 
 export default function ConceptCard({ concept, compact = false }: ConceptCardProps) {
   const [numExOpen, setNumExOpen] = useState(false)
+  const [mindMapOpen, setMindMapOpen] = useState(false)
 
   if (compact) {
     return (
@@ -129,6 +130,27 @@ export default function ConceptCard({ concept, compact = false }: ConceptCardPro
                   {concept.numericalExample.answer}
                 </p>
               </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Mind Map — collapsible */}
+      {concept.mindMap && (
+        <div className="border border-indigo-700/40 rounded-xl overflow-hidden">
+          <button
+            onClick={() => setMindMapOpen(o => !o)}
+            className="w-full flex items-center justify-between px-4 py-3 bg-indigo-950/40 hover:bg-indigo-950/60 transition-colors text-left"
+          >
+            <span className="text-xs text-indigo-400 font-semibold uppercase tracking-wider">
+              {mindMapOpen ? '▼' : '▶'} Mind Map
+            </span>
+          </button>
+          {mindMapOpen && (
+            <div className="px-4 pb-4 pt-3 bg-indigo-950/20">
+              <pre className="text-indigo-100 text-xs leading-relaxed whitespace-pre overflow-x-auto font-mono">
+                {concept.mindMap}
+              </pre>
             </div>
           )}
         </div>
