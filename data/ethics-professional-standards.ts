@@ -784,5 +784,139 @@ export const ethicsTopics: Topic[] = [
         }
       }
     ]
+  },
+  {
+    id: 'ethics-gips',
+    title: 'Introduction to GIPS',
+    description: 'Global Investment Performance Standards — the global framework for fair, comparable, and transparent investment performance presentation.',
+    examWeight: '10-15%',
+    concepts: [
+      {
+        id: 'gips-purpose-and-scope',
+        topicId: 'ethics-gips',
+        title: 'GIPS: Purpose and Scope',
+        firstPrinciple: 'Before GIPS, firms could cherry-pick their best-performing portfolios to show prospective clients — making any comparison between managers meaningless. GIPS exists to create a single global standard for performance presentation, so investors can trust they are seeing a complete and honest picture, not a marketing-curated highlight reel.',
+        formula: 'GIPS compliance is firm-wide — not portfolio-specific',
+        examAngle: 'GIPS applies to investment management FIRMS, not individual portfolio managers or clients. A firm either fully complies or it does not — there is no partial compliance. Compliance is voluntary, but once claimed, all requirements must be met.',
+        keyPoints: [
+          'GIPS is a voluntary global standard — but once adopted, must be fully applied',
+          'Applies to investment management firms only (not individuals, plan sponsors, or consultants)',
+          'Goal: prevent performance manipulation and enable fair comparison across managers',
+          'Firms must define the "firm" clearly — all actual, fee-paying, discretionary portfolios must be included',
+          'GIPS does NOT guarantee accuracy — it only standardises presentation methodology'
+        ],
+        difficulty: 'medium',
+        tags: ['GIPS', 'performance', 'compliance', 'firm-wide', 'standards'],
+        scenario: {
+          situation: 'Meridian Asset Management has adopted GIPS. Their equity division has been fully compliant for 3 years, but their fixed income division has not followed GIPS presentation requirements. The firm markets itself as "Meridian Asset Management claims compliance with GIPS."',
+          question: 'Is Meridian\'s compliance claim valid?',
+          verdict: 'Violation',
+          reasoning: 'GIPS compliance is firm-wide. A firm cannot claim compliance for only one division or product line. Meridian must either bring the fixed income division into full compliance before claiming GIPS compliance, or remove the claim entirely. Partial compliance claims are explicitly prohibited under GIPS.'
+        }
+      },
+      {
+        id: 'gips-composite-construction',
+        topicId: 'ethics-gips',
+        title: 'GIPS: Composite Construction',
+        firstPrinciple: 'The composite is the core anti-cherry-picking mechanism in GIPS. All actual, fee-paying, discretionary portfolios with similar investment mandates must be grouped together and presented as one composite. This prevents firms from only showing their best portfolios — every portfolio in the strategy gets included, dragging in the underperformers too.',
+        formula: 'Composite return = asset-weighted average of all portfolio returns in the composite',
+        examAngle: 'Three words that define composite inclusion: ACTUAL (no model/simulated), FEE-PAYING (no free/charity accounts), DISCRETIONARY (firm makes the decisions). Non-discretionary portfolios (client overrides decisions) must be excluded. A portfolio must be in at least one composite.',
+        keyPoints: [
+          'All actual, fee-paying, discretionary portfolios must be assigned to at least one composite',
+          'Composite returns are asset-weighted (larger portfolios carry more weight)',
+          'Non-discretionary portfolios are excluded — client controls decisions, not the manager',
+          'Portfolios must be added to composites on a timely basis (typically within one month of funding)',
+          'Terminated portfolios must remain in historical composite returns — cannot be removed retroactively',
+          'Firms can have multiple composites (e.g., one per strategy: large-cap growth, fixed income, etc.)'
+        ],
+        difficulty: 'hard',
+        tags: ['GIPS', 'composite', 'performance', 'discretionary', 'inclusion'],
+        scenario: {
+          situation: 'A GIPS-compliant firm manages 12 large-cap equity portfolios. Two portfolios significantly underperformed because clients restricted certain sectors, preventing the manager from implementing the full strategy. The firm excludes these two from the large-cap equity composite to "maintain composite integrity."',
+          question: 'Is this exclusion permitted?',
+          verdict: 'No Violation — exclusion is correct',
+          reasoning: 'Portfolios where clients restrict the manager\'s discretion are classified as non-discretionary. Since the manager could not implement the strategy fully due to client restrictions, these portfolios may legitimately be excluded from the composite. The composite should only reflect portfolios where the firm\'s investment process was applied without material constraints. However, the firm must document and consistently apply its discretion policy.'
+        }
+      },
+      {
+        id: 'gips-return-calculation',
+        topicId: 'ethics-gips',
+        title: 'GIPS: Return Calculation Requirements',
+        firstPrinciple: 'Time-weighted return (TWR) is required under GIPS because it eliminates the distorting effect of client cash flows — which the manager does not control. If a client deposits a large sum just before a market drop, a money-weighted return would unfairly penalise the manager. TWR isolates the manager\'s actual investment skill.',
+        formula: 'TWR = [(1+R₁) × (1+R₂) × ... × (1+Rₙ)] - 1 | Sub-period returns calculated around each external cash flow',
+        examAngle: 'GIPS requires time-weighted returns for most composites. Money-weighted return (IRR) is permitted only for private equity and real estate. Returns must be calculated after trading expenses (but can be gross or net of management fees — both are acceptable if disclosed).',
+        keyPoints: [
+          'Time-weighted return (TWR) required — eliminates impact of external cash flows',
+          'TWR is fair to the manager; money-weighted return reflects both manager skill AND cash flow timing',
+          'Gross-of-fees and net-of-fees returns are both acceptable — but must be clearly labelled',
+          'Trade date accounting required (not settlement date)',
+          'Accrual accounting required for fixed income (interest accrues daily, not at payment)',
+          'MWR (IRR) permitted for private equity, real estate, and other closed-end funds'
+        ],
+        difficulty: 'hard',
+        tags: ['GIPS', 'TWR', 'MWR', 'return calculation', 'time-weighted'],
+        numericalExample: {
+          problem: 'A portfolio starts Jan 1 at $1,000,000. By June 30 it grows to $1,080,000 (return = +8%). A client deposits $500,000 on July 1. By Dec 31 the total portfolio is $1,674,000. Calculate the time-weighted return for the full year.',
+          solution: `Sub-period 1 (Jan 1 – Jun 30):
+  Return R₁ = (1,080,000 - 1,000,000) / 1,000,000 = +8.0%
+
+Sub-period 2 (Jul 1 – Dec 31):
+  Start value = 1,080,000 + 500,000 deposit = 1,580,000
+  End value = 1,674,000
+  Return R₂ = (1,674,000 - 1,580,000) / 1,580,000 = +5.95%
+
+TWR = (1 + 0.08) × (1 + 0.0595) - 1`,
+          answer: 'TWR = 1.08 × 1.0595 - 1 = 14.43%. The large mid-year deposit does not distort the manager\'s return — TWR correctly isolates performance in each sub-period.'
+        }
+      },
+      {
+        id: 'gips-presentation-requirements',
+        topicId: 'ethics-gips',
+        title: 'GIPS: Presentation & Reporting Requirements',
+        firstPrinciple: 'Standardised presentation rules prevent firms from starting their performance history at a convenient point (just after a bad period) or only showing recent strong years. GIPS requires a minimum history so investors always see enough context to evaluate a track record.',
+        formula: 'Minimum 5 years of GIPS-compliant history required at initial claim (build to 10 years thereafter)',
+        examAngle: 'Key numbers to memorise: 5 years minimum at first claim, then add 1 year per year until 10 years of history. If firm/composite is less than 5 years old, show performance since inception. Must show annual returns — not just cumulative.',
+        keyPoints: [
+          '5-year minimum compliant history required when first claiming compliance',
+          'Must build to 10 years by adding 1 year annually — cannot stay at 5 years forever',
+          'If composite < 5 years old, present performance since inception date',
+          'Annual returns must be shown (not just cumulative totals)',
+          'Must disclose: composite description, composite creation date, benchmark used, # of portfolios in composite, composite assets, % of firm assets in composite, 3-year annualised ex-post standard deviation (risk measure)',
+          'Composite dispersion must be shown if ≥ 6 portfolios in composite for the full year'
+        ],
+        difficulty: 'medium',
+        tags: ['GIPS', 'presentation', 'reporting', '5-year', '10-year', 'history'],
+        scenario: {
+          situation: 'Global Equity Partners adopted GIPS on January 1, 2020. It is now January 2024 (4 years of compliant history). A prospective client requests their GIPS composite presentation. The firm shows 4 years of annual returns and notes they will add a fifth year next January.',
+          question: 'Is this presentation GIPS compliant?',
+          verdict: 'No Violation — this is correct',
+          reasoning: 'Since the firm adopted GIPS in 2020 and it is now 2024, they only have 4 years of GIPS-compliant history. GIPS permits presenting performance since the later of: the composite inception date or the firm\'s GIPS compliance start date — even if that is less than 5 years. They are building toward the 5-year minimum and are acting correctly. The violation would occur if they claimed 5 years of compliant history before they actually had it.'
+        }
+      },
+      {
+        id: 'gips-verification',
+        topicId: 'ethics-gips',
+        title: 'GIPS: Verification and Compliance Claim',
+        firstPrinciple: 'GIPS compliance is self-regulated — no external body enforces it. Verification by an independent third party adds credibility to the compliance claim, but it is not required. This creates a trust-but-verify dynamic: the compliance claim is the firm\'s own assertion, and verification is the market\'s signal that someone has checked the work.',
+        formula: 'Compliance claim: "[Firm name] claims compliance with GIPS and has prepared and presented this report in compliance with the GIPS standards. [Firm] has not been independently verified."',
+        examAngle: 'Verification is firm-wide (not composite-specific). A verified firm cannot say a specific composite has been verified — only the firm as a whole. Verification tests whether the firm\'s policies comply with GIPS — it does NOT guarantee accuracy of any specific composite presentation.',
+        keyPoints: [
+          'Verification is voluntary — not required to claim GIPS compliance',
+          'Verification is always firm-wide — never composite-specific',
+          'Verified firms may add: "...has been independently verified" to the compliance statement',
+          'Verification does NOT guarantee accuracy of composite presentations — it tests policies and procedures',
+          'Performance examination (deeper composite-level review) is separate from firm-wide verification',
+          'Non-compliance with even one GIPS requirement = cannot claim compliance at all'
+        ],
+        difficulty: 'medium',
+        tags: ['GIPS', 'verification', 'compliance claim', 'third-party', 'assurance'],
+        scenario: {
+          situation: 'Apex Capital has been verified by an independent verifier. In their marketing materials, they state: "Our Global Growth Composite has been independently verified and confirmed accurate under GIPS standards." They have not had a performance examination conducted on this specific composite.',
+          question: 'Is this statement accurate and GIPS-compliant?',
+          verdict: 'Violation',
+          reasoning: 'Two problems: (1) Verification is firm-wide — Apex can say the FIRM has been independently verified, not a specific composite. (2) Verification does not confirm accuracy of composite presentations — it only tests firm-wide policies and procedures. The statement implies the composite\'s numbers have been independently confirmed, which is misleading. The correct statement would be: "Apex Capital has been independently verified" without claiming composite-level accuracy or verification.'
+        }
+      }
+    ]
   }
 ]

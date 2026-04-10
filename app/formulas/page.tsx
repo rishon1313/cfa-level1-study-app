@@ -4,10 +4,12 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { portfolioManagementTopics } from '@/data/portfolio-management'
 import { ethicsTopics } from '@/data/ethics-professional-standards'
+import { economicsTopics } from '@/data/economics'
 import FormulaBlock from '@/components/FormulaBlock'
 
 const pmFormulas = portfolioManagementTopics
 const ethicsFormulas = ethicsTopics
+const ecoFormulas = economicsTopics
 
 export default function FormulasPage() {
   const [search, setSearch] = useState('')
@@ -31,6 +33,7 @@ export default function FormulasPage() {
 
   const filteredPM = filterTopics(pmFormulas)
   const filteredEthics = filterTopics(ethicsFormulas)
+  const filteredEco = filterTopics(ecoFormulas)
 
   const totalPMFormulas = portfolioManagementTopics.reduce(
     (sum, t) => sum + t.concepts.filter(c => c.formula).length, 0
@@ -38,9 +41,12 @@ export default function FormulasPage() {
   const totalEthicsFormulas = ethicsTopics.reduce(
     (sum, t) => sum + t.concepts.filter(c => c.formula).length, 0
   )
-  const totalFormulas = totalPMFormulas + totalEthicsFormulas
+  const totalEcoFormulas = economicsTopics.reduce(
+    (sum, t) => sum + t.concepts.filter(c => c.formula).length, 0
+  )
+  const totalFormulas = totalPMFormulas + totalEthicsFormulas + totalEcoFormulas
 
-  const hasResults = filteredPM.length > 0 || filteredEthics.length > 0
+  const hasResults = filteredPM.length > 0 || filteredEthics.length > 0 || filteredEco.length > 0
 
   return (
     <div className="space-y-6">
@@ -53,7 +59,7 @@ export default function FormulasPage() {
         </div>
         <h1 className="text-2xl font-bold text-white">Cheat Sheet &amp; Standards Reference</h1>
         <p className="text-gray-400 text-sm">
-          {totalPMFormulas} Portfolio Management formulas &middot; {totalEthicsFormulas} Ethics Standards codes ({totalFormulas} total)
+          {totalPMFormulas} Portfolio Management formulas &middot; {totalEthicsFormulas} Ethics Standards codes &middot; {totalEcoFormulas} Economics formulas ({totalFormulas} total)
         </p>
       </div>
 
@@ -151,6 +157,46 @@ export default function FormulasPage() {
                         </Link>
                         <div className="bg-violet-950/40 border border-violet-700/40 rounded-lg px-3 py-2">
                           <p className="text-violet-300 font-mono text-sm font-semibold">{concept.formula}</p>
+                        </div>
+                        <p className="text-xs text-gray-500 leading-relaxed pl-1">{concept.examAngle}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Economics Formulas */}
+          {filteredEco.length > 0 && (
+            <div className="space-y-8">
+              <div className="flex items-center gap-3">
+                <h2 className="text-lg font-bold text-white">Economics Formulas</h2>
+                <span className="text-xs text-gray-600 border-b border-gray-800 flex-1 mb-0.5"></span>
+              </div>
+              {filteredEco.map(topic => (
+                <div key={topic.id} className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <Link
+                      href={`/topic/${topic.id}`}
+                      className="text-base font-semibold text-white hover:text-green-300 transition-colors"
+                    >
+                      {topic.title}
+                    </Link>
+                    <span className="text-xs text-gray-600 border-b border-gray-800 flex-1 mb-0.5"></span>
+                  </div>
+
+                  <div className="space-y-4">
+                    {topic.concepts.map(concept => (
+                      <div key={concept.id} className="space-y-1.5">
+                        <Link
+                          href={`/concept/${concept.id}`}
+                          className="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+                        >
+                          {concept.title}
+                        </Link>
+                        <div className="bg-green-950/40 border border-green-700/40 rounded-lg px-3 py-2">
+                          <p className="text-green-300 font-mono text-sm font-semibold">{concept.formula}</p>
                         </div>
                         <p className="text-xs text-gray-500 leading-relaxed pl-1">{concept.examAngle}</p>
                       </div>

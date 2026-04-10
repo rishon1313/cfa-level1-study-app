@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { portfolioManagementTopics } from '@/data/portfolio-management'
 import { ethicsTopics } from '@/data/ethics-professional-standards'
+import { economicsTopics } from '@/data/economics'
 
 export default function TopicNav() {
   const pathname = usePathname()
@@ -52,6 +53,16 @@ export default function TopicNav() {
         <div className="space-y-1">
           {ethicsTopics.map(topic =>
             renderTopicLink(topic, 'text-violet-400', 'bg-violet-600/20 text-violet-300 border-violet-600/30')
+          )}
+        </div>
+
+        {/* Economics */}
+        <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider mt-6 mb-3 px-1 border-t border-gray-800 pt-4">
+          Economics
+        </p>
+        <div className="space-y-1">
+          {economicsTopics.map(topic =>
+            renderTopicLink(topic, 'text-green-400', 'bg-green-600/20 text-green-300 border-green-600/30')
           )}
         </div>
 
