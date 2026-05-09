@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { portfolioManagementTopics } from '@/data/portfolio-management'
 import { ethicsTopics } from '@/data/ethics-professional-standards'
 import { economicsTopics } from '@/data/economics'
+import { allPracticeChapters } from '@/data/practice'
 
 const difficultyColorMap = {
   easy: 'bg-green-900/50 text-green-300',
@@ -213,6 +214,69 @@ export default function HomePage() {
           className="inline-flex items-center gap-2 bg-green-600/20 hover:bg-green-600/30 border border-green-600/40 text-green-300 font-medium text-sm px-5 py-2.5 rounded-xl transition-colors"
         >
           View Economics Overview &rarr;
+        </Link>
+      </div>
+
+      {/* Practice Questions Section */}
+      <div className="border-t border-gray-800 pt-8 space-y-6">
+        <div className="space-y-3">
+          <div className="flex items-center gap-3 flex-wrap">
+            <Link href="/practice" className="text-3xl font-bold text-white hover:text-orange-300 transition-colors">
+              Practice Questions
+            </Link>
+            <span className="text-sm bg-orange-900/60 text-orange-300 border border-orange-700/50 px-3 py-1 rounded-full font-medium">
+              Wrong Answers to Revise
+            </span>
+          </div>
+          <p className="text-gray-400 text-base leading-relaxed max-w-2xl">
+            Drill the questions you got wrong. Each chapter includes concept summaries and targeted practice questions.
+          </p>
+          <div className="flex gap-4 text-sm text-gray-500">
+            <span>{allPracticeChapters.length} chapter{allPracticeChapters.length !== 1 ? 's' : ''}</span>
+            <span>•</span>
+            <span>{allPracticeChapters.reduce((s, c) => s + c.questions.length, 0)} questions</span>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+          {allPracticeChapters.map(chapter => {
+            const [correct, total] = chapter.score.split('/').map(Number)
+            const wrong = total - correct
+            return (
+              <Link
+                key={chapter.id}
+                href={`/practice/${chapter.id}`}
+                className="group bg-gray-900 border border-gray-800 hover:border-orange-700/60 rounded-xl p-5 transition-all hover:bg-gray-900/80 space-y-3"
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <div className="space-y-1">
+                    <span className="text-xs font-semibold text-orange-400 uppercase tracking-wider">
+                      {chapter.subject}
+                    </span>
+                    <h2 className="text-white font-semibold text-base leading-snug group-hover:text-orange-300 transition-colors">
+                      {chapter.title}
+                    </h2>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between pt-1">
+                  <div className="flex gap-3 text-xs text-gray-500">
+                    <span>Score: {chapter.score}</span>
+                    <span className="text-orange-400">{wrong} to revise</span>
+                  </div>
+                  <span className="text-xs text-orange-500 group-hover:text-orange-400 transition-colors">
+                    Practise &rarr;
+                  </span>
+                </div>
+              </Link>
+            )
+          })}
+        </div>
+
+        <Link
+          href="/practice"
+          className="inline-flex items-center gap-2 bg-orange-600/20 hover:bg-orange-600/30 border border-orange-600/40 text-orange-300 font-medium text-sm px-5 py-2.5 rounded-xl transition-colors"
+        >
+          View All Practice &rarr;
         </Link>
       </div>
     </div>

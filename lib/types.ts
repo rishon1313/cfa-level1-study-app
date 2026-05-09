@@ -36,3 +36,26 @@ export interface QuizQuestion {
   correctIndex: number
   explanation: string
 }
+
+export interface PracticeQuestion {
+  id: string
+  question: string
+  options: string[]        // e.g. ["A. ...", "B. ...", "C. ..."]
+  correctIndex: number     // 0-based
+  explanation: string
+  concept: string          // short label e.g. "IFRS Impairment"
+}
+
+export interface ConceptSummary {
+  title: string
+  rule: string             // the one key rule/formula to remember
+}
+
+export interface PracticeChapter {
+  id: string
+  subject: string          // e.g. "Financial Statement Analysis"
+  title: string            // e.g. "Analysis of Long-Term Assets"
+  score: string            // e.g. "15/33"
+  conceptsSummary: ConceptSummary[]
+  questions: PracticeQuestion[]  // only the wrong ones
+}

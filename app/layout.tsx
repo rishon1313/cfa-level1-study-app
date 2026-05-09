@@ -48,6 +48,12 @@ export default function RootLayout({
               >
                 Cheat Sheet
               </Link>
+              <Link
+                href="/practice"
+                className="text-sm text-gray-400 hover:text-white px-3 py-1.5 rounded-lg hover:bg-gray-800 transition-colors"
+              >
+                Practice
+              </Link>
             </nav>
           </div>
         </header>

@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { portfolioManagementTopics } from '@/data/portfolio-management'
 import { ethicsTopics } from '@/data/ethics-professional-standards'
 import { economicsTopics } from '@/data/economics'
+import { allPracticeChapters } from '@/data/practice'
 
 export default function TopicNav() {
   const pathname = usePathname()
@@ -77,6 +78,32 @@ export default function TopicNav() {
           >
             <span>Cheat Sheet</span>
           </Link>
+        </div>
+
+        {/* Practice */}
+        <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider mt-6 mb-3 px-1 border-t border-gray-800 pt-4">
+          Practice
+        </p>
+        <div className="space-y-1">
+          {allPracticeChapters.map(chapter => {
+            const isActive = pathname.startsWith(`/practice/${chapter.id}`)
+            return (
+              <Link
+                key={chapter.id}
+                href={`/practice/${chapter.id}`}
+                className={`group flex items-start justify-between gap-2 px-3 py-2.5 rounded-lg text-sm transition-colors ${
+                  isActive
+                    ? 'bg-orange-600/20 text-orange-300 border border-orange-600/30'
+                    : 'text-gray-400 hover:bg-gray-800 hover:text-gray-200 border border-transparent'
+                }`}
+              >
+                <span className="leading-snug">
+                  <span className="text-orange-400 font-medium mr-1">FSA:</span>
+                  {chapter.title.replace('Analysis of ', '')}
+                </span>
+              </Link>
+            )
+          })}
         </div>
       </div>
     </nav>
