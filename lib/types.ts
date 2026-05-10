@@ -20,6 +20,12 @@ export interface Concept {
     reasoning: string
   }
   mindMap?: string       // Preformatted ASCII mind map
+  image?: string         // Path to exam-day revision diagram (relative to /public)
+  comparisonTable?: {    // Exam-day quick-reference table
+    caption?: string
+    headers: string[]
+    rows: string[][]
+  }
 }
 
 export interface Topic {

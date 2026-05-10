@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { Concept } from '@/lib/types'
 import FormulaBlock from './FormulaBlock'
 import ScenarioCard from './ScenarioCard'
@@ -19,6 +20,7 @@ const difficultyColors = {
 export default function ConceptCard({ concept, compact = false }: ConceptCardProps) {
   const [numExOpen, setNumExOpen] = useState(false)
   const [mindMapOpen, setMindMapOpen] = useState(false)
+  const [imageOpen, setImageOpen] = useState(false)
 
   if (compact) {
     return (
@@ -153,6 +155,66 @@ export default function ConceptCard({ concept, compact = false }: ConceptCardPro
               </pre>
             </div>
           )}
+        </div>
+      )}
+
+      {/* Exam Day Visual — diagram image */}
+      {concept.image && (
+        <div className="border border-purple-700/40 rounded-xl overflow-hidden">
+          <button
+            onClick={() => setImageOpen(o => !o)}
+            className="w-full flex items-center justify-between px-4 py-3 bg-purple-950/40 hover:bg-purple-950/60 transition-colors text-left"
+          >
+            <span className="text-xs text-purple-400 font-semibold uppercase tracking-wider">
+              {imageOpen ? '▼' : '▶'} Exam Day Visual
+            </span>
+          </button>
+          {imageOpen && (
+            <div className="px-4 pb-4 pt-3 bg-purple-950/20 flex justify-center">
+              <Image
+                src={concept.image}
+                alt="Exam day revision diagram"
+                width={800}
+                height={600}
+                className="rounded-lg max-w-full h-auto"
+              />
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Comparison Table — exam-day quick reference */}
+      {concept.comparisonTable && (
+        <div className="border border-teal-700/40 rounded-xl overflow-hidden">
+          <div className="px-4 py-3 bg-teal-950/40">
+            <p className="text-xs text-teal-400 font-semibold uppercase tracking-wider">
+              {concept.comparisonTable.caption ?? 'Comparison Table'}
+            </p>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-teal-950/30 border-b border-teal-800/40">
+                  {concept.comparisonTable.headers.map((h, i) => (
+                    <th key={i} className="px-4 py-2.5 text-left text-xs font-semibold text-teal-300 uppercase tracking-wider whitespace-nowrap">
+                      {h}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {concept.comparisonTable.rows.map((row, ri) => (
+                  <tr key={ri} className={`border-b border-gray-800/60 ${ri % 2 === 0 ? 'bg-gray-900/40' : 'bg-gray-900/20'}`}>
+                    {row.map((cell, ci) => (
+                      <td key={ci} className={`px-4 py-2.5 leading-snug ${ci === 0 ? 'text-white font-semibold' : 'text-gray-300'}`}>
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
 

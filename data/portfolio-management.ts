@@ -456,6 +456,25 @@ export const portfolioManagementTopics: Topic[] = [
         ],
         difficulty: 'hard',
         tags: ['alpha', 'CAPM applications', 'cost of equity', 'valuation', 'Jensen\'s alpha']
+      },
+      {
+        id: 'cml-exam-day-revision',
+        topicId: 'pm-risk-return-2',
+        title: 'CML & Efficient Frontier — Exam Day Revision',
+        firstPrinciple: 'The CML extends the efficient frontier by introducing a risk-free asset. Every investor should hold some combination of Rf and the market portfolio M — this is the two-fund separation theorem. The CML dominates the efficient frontier everywhere except at point M because mixing in Rf smooths the risk-return tradeoff linearly, while the frontier alone is curved (concave).',
+        formula: 'E(Rp) = Rf + [(E(Rm) - Rf) / σm] × σp\n\nBorrowing (y < 1): E(Rp) = Rf + y[E(Rm) - Rf], σp = y·σm\nLending (y > 1):   E(Rp) = Rf + y[E(Rm) - Rf], σp = y·σm',
+        examAngle: 'Three distinctions the exam loves: (1) CML uses total risk (σ); SML uses systematic risk (β). (2) CML applies only to efficient portfolios; SML applies to any asset. (3) Slope of CML = Sharpe ratio of M; slope of SML = market risk premium.',
+        keyPoints: [
+          'Efficient frontier = best risk-return using risky assets only (curved)',
+          'CML = best risk-return when risk-free asset is available (straight line through Rf and M)',
+          'Market portfolio M is the tangency point — highest Sharpe ratio on the frontier',
+          'Borrowing at Rf (y < 1): invest <100% in M, rest in Rf — reduces both return and risk',
+          'Lending at Rf (y > 1): invest >100% in M by borrowing at Rf — leverages both return and risk',
+          'Any portfolio on the CML is preferable to any portfolio below it at the same risk level'
+        ],
+        difficulty: 'medium',
+        tags: ['CML', 'efficient frontier', 'exam revision', 'market portfolio', 'two-fund separation'],
+        image: '/CML.jpg'
       }
     ]
   },
@@ -633,6 +652,33 @@ export const portfolioManagementTopics: Topic[] = [
         ],
         difficulty: 'hard',
         tags: ['market anomalies', 'momentum', 'bubbles', 'herding', 'behavioral finance', 'EMH']
+      },
+      {
+        id: 'behavioral-bias-map-exam-revision',
+        topicId: 'pm-behavioral-biases',
+        title: 'Behavioral Bias Map — Exam Day Revision',
+        firstPrinciple: 'Market anomalies are not random — each one has a specific behavioral root cause. The exam gives you an anomaly and asks you to name the bias (or vice versa). Memorise the chain: bias → mechanism → observable market effect. Loss aversion alone drives two anomalies (overreaction and the disposition effect), making it the most-tested single bias.',
+        examAngle: 'The exam presents a scenario (e.g., "investor held a losing stock for 3 years") and asks which bias explains it. Match the anomaly to the mechanism: overreaction → loss aversion; underreaction/momentum → conservatism; disposition effect → loss aversion + regret; home bias → familiarity.',
+        keyPoints: [
+          'Overreaction → Loss aversion: prices overshoot fair value then mean-revert',
+          'Underreaction → Conservatism bias: investors are slow to update, so prices drift gradually toward fair value',
+          'Momentum → Representativeness: investors extrapolate recent trends, creating self-fulfilling price persistence',
+          'Disposition effect → Loss aversion + Regret: hold losers (avoid realising a loss) and sell winners early (lock in gain)',
+          'Home bias → Familiarity bias: investors overweight domestic stocks and sacrifice diversification'
+        ],
+        difficulty: 'medium',
+        tags: ['behavioral bias', 'exam revision', 'overreaction', 'momentum', 'disposition effect', 'home bias'],
+        comparisonTable: {
+          caption: 'Behavioral Bias Map — the exam tests these constantly',
+          headers: ['Anomaly', 'Behavioral Explanation', 'Mechanism'],
+          rows: [
+            ['Overreaction', 'Loss aversion', 'Overreact to losses → prices overshoot → revert'],
+            ['Underreaction', 'Conservatism bias', 'Slow to update beliefs → prices drift gradually'],
+            ['Momentum', 'Representativeness', 'Extrapolate recent trends too far into future'],
+            ['Disposition effect', 'Loss aversion + regret', 'Hold losers too long, sell winners too early'],
+            ['Home bias', 'Familiarity bias', 'Prefer domestic stocks despite diversification benefits'],
+          ]
+        }
       }
     ]
   },
@@ -716,6 +762,69 @@ export const portfolioManagementTopics: Topic[] = [
           problem: 'Fund A: Rp = 14%, σp = 20%, βp = 1.10, tracking error = 6%, alpha vs. benchmark = 2%. Fund B: Rp = 11%, σp = 12%, βp = 0.80, tracking error = 3%, alpha = 1.2%. Rf = 3%, E(Rm) = 10%. Compute all four measures for each fund.',
           solution: 'Sharpe Ratio:\n  A: (14−3)/20 = 0.55    B: (11−3)/12 = 0.667\n\nTreynor Ratio:\n  A: (14−3)/1.10 = 10.0   B: (11−3)/0.80 = 10.0\n\nJensen\'s Alpha:\n  A: 14% − [3%+1.10×7%] = 14% − 10.7% = +3.3%\n  B: 11% − [3%+0.80×7%] = 11% − 8.6% = +2.4%\n\nInformation Ratio:\n  A: 2% / 6% = 0.333    B: 1.2% / 3% = 0.400',
           answer: 'Sharpe: Fund B wins (0.667 > 0.55) — better total-risk-adjusted return\nTreynor: Tie (10.0 = 10.0) — equal systematic-risk-adjusted return\nJensen\'s Alpha: Fund A wins (+3.3% > +2.4%) — larger absolute outperformance\nInformation Ratio: Fund B wins (0.40 > 0.33) — more consistent active return per unit of active risk\nKey: Which measure to use depends on whether the fund is a standalone investment (Sharpe) or part of a larger portfolio (Treynor/Jensen)'
+        }
+      },
+      {
+        id: 'performance-measures-exam-revision',
+        topicId: 'pm-risk-management',
+        title: 'Performance Measures — Exam Day Revision',
+        firstPrinciple: 'The key exam trap: M² and Information Ratio both reference a benchmark, but for opposite reasons. M² adjusts total risk to the market\'s level so you can directly compare returns. IR measures how much active return you earned per unit of active (benchmark-relative) risk. Sharpe and Treynor are absolute (no benchmark) — they rank portfolios but don\'t anchor to any reference portfolio.',
+        examAngle: 'Q: Which measure uses total risk AND has a benchmark? Answer: M² (Modigliani). Sharpe also uses total risk but has no benchmark. Treynor and Jensen both use systematic risk (β). IR uses nonsystematic (tracking error) risk.',
+        keyPoints: [
+          'M² is the only measure that uses total risk AND has a benchmark — it re-scales to market σ, then asks "what would your return be?"',
+          'Sharpe uses total risk but is benchmark-free — it is a standalone ratio, not relative to any index',
+          'Treynor and Jensen both use β (systematic risk) — appropriate when the fund is one sleeve in a larger diversified portfolio',
+          'Information Ratio (α / σε) uses nonsystematic/active risk — best for evaluating active managers vs. their stated benchmark',
+          'Exam shortcut: if asked "uses total risk vs. benchmark" → M². "Uses systematic risk vs. CAPM" → Jensen\'s Alpha.'
+        ],
+        difficulty: 'hard',
+        tags: ['M squared', 'Sharpe', 'Treynor', 'Jensen alpha', 'information ratio', 'exam revision'],
+        comparisonTable: {
+          caption: 'Performance Measures — Risk Type & Benchmark',
+          headers: ['Measure', 'Formula', 'Risk Used', 'Has Benchmark?'],
+          rows: [
+            ['M²', '(Rp − Rf) × (σm / σp) + Rf', 'Total risk (σ)', 'Yes — return expressed at market risk level'],
+            ['Sharpe Ratio', '(Rp − Rf) / σp', 'Total risk (σ)', 'No — absolute ratio'],
+            ['Treynor Ratio', '(Rp − Rf) / βp', 'Systematic risk (β)', 'No — absolute ratio'],
+            ["Jensen's Alpha", 'Rp − [Rf + β(Rm − Rf)]', 'Systematic risk (β)', 'Yes — vs. CAPM expected return'],
+            ['Information Ratio', 'α / σε', 'Nonsystematic risk (tracking error)', 'Yes — vs. benchmark'],
+          ]
+        }
+      }
+    ]
+  },
+  {
+    id: 'pm-derivatives',
+    title: 'Derivatives: Forwards & Futures',
+    description: 'Pricing and valuation of forward contracts and futures, including commodity forwards with storage costs and convenience yield. Covers no-arbitrage pricing, cost-of-carry model, and how each component shifts the forward price.',
+    examWeight: '5-8%',
+    concepts: [
+      {
+        id: 'commodity-forward-pricing',
+        topicId: 'pm-derivatives',
+        title: 'Commodity Forward Pricing',
+        firstPrinciple: 'A forward price is simply the spot price plus the net cost of carrying the commodity to the delivery date. If the forward price deviated from this, arbitrageurs would exploit it immediately — so the formula is a no-arbitrage identity, not an estimate. Storage costs raise the forward price (you pay to hold the physical asset) while convenience yield lowers it (owning the physical asset gives you benefits that the forward contract cannot replicate).',
+        formula: 'F₀ = (S₀ + PV(storage costs) − PV(convenience yield)) × (1 + r)^T',
+        examAngle: 'The exam tests two things: (1) direction — which components push F₀ up vs. down; (2) the convenience yield concept — it only applies to physical commodities (oil, wheat), never to financial assets. A high convenience yield can push F₀ below S₀ (backwardation).',
+        keyPoints: [
+          'F₀ = no-arbitrage forward price; any deviation creates a riskless profit opportunity',
+          'Storage costs ↑ → F₀ ↑: holding physical commodity costs money (warehousing, insurance)',
+          'Convenience yield ↑ → F₀ ↓: benefit of physically holding the commodity (production flexibility, avoiding stockouts)',
+          'Risk-free rate r ↑ → F₀ ↑: higher opportunity cost of capital tied up in the spot purchase',
+          'Contango: F₀ > S₀ (storage costs dominate); Backwardation: F₀ < S₀ (convenience yield dominates)',
+          'Convenience yield only applies to physical commodities — financial assets have no convenience yield'
+        ],
+        difficulty: 'medium',
+        tags: ['commodity forwards', 'forward pricing', 'storage costs', 'convenience yield', 'cost of carry', 'backwardation', 'contango'],
+        comparisonTable: {
+          caption: 'Commodity Forward Price — Component Effects',
+          headers: ['Component', 'Effect on F₀', 'Intuition'],
+          rows: [
+            ['Spot price S₀ ↑', 'F₀ ↑', 'Starting price is higher'],
+            ['Risk-free rate r ↑', 'F₀ ↑', 'Costs more to finance the purchase'],
+            ['Storage costs ↑', 'F₀ ↑', 'Costs more to hold the commodity to delivery'],
+            ['Convenience yield ↑', 'F₀ ↓', 'Benefit of holding physical asset offsets carrying costs'],
+          ]
         }
       }
     ]
