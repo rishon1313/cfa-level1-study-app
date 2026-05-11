@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { portfolioManagementTopics } from '@/data/portfolio-management'
 import { ethicsTopics } from '@/data/ethics-professional-standards'
 import { economicsTopics } from '@/data/economics'
+import { fsaInventoriesTopics } from '@/data/fsa-inventories'
 import { allPracticeChapters } from '@/data/practice'
 
 const difficultyColorMap = {
@@ -215,6 +216,56 @@ export default function HomePage() {
         >
           View Economics Overview &rarr;
         </Link>
+      </div>
+
+      {/* FSA Section */}
+      <div className="border-t border-gray-800 pt-8 space-y-6">
+        <div className="space-y-3">
+          <div className="flex items-center gap-3 flex-wrap">
+            <h2 className="text-3xl font-bold text-white">Financial Statement Analysis</h2>
+            <span className="text-sm bg-rose-900/60 text-rose-300 border border-rose-700/50 px-3 py-1 rounded-full font-medium">
+              13-17% Exam Weight
+            </span>
+          </div>
+          <p className="text-gray-400 text-base leading-relaxed max-w-2xl">
+            Inventory methods, long-term assets, liabilities, and financial reporting quality. Heavily tested — master the IFRS vs. US GAAP distinctions.
+          </p>
+          <div className="flex gap-4 text-sm text-gray-500">
+            <span>{fsaInventoriesTopics.length} topic{fsaInventoriesTopics.length !== 1 ? 's' : ''}</span>
+            <span>•</span>
+            <span>{fsaInventoriesTopics.reduce((s, t) => s + t.concepts.length, 0)} concepts</span>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+          {fsaInventoriesTopics.map(topic => {
+            const formulaCount = topic.concepts.filter(c => c.formula).length
+            return (
+              <Link
+                key={topic.id}
+                href={`/topic/${topic.id}`}
+                className="group bg-gray-900 border border-gray-800 hover:border-rose-700/60 rounded-xl p-5 transition-all hover:bg-gray-900/80 space-y-3"
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <h2 className="text-white font-semibold text-base leading-snug group-hover:text-rose-300 transition-colors">
+                    {topic.title}
+                  </h2>
+                </div>
+                <p className="text-gray-400 text-sm leading-relaxed line-clamp-2">
+                  {topic.description}
+                </p>
+                <div className="flex items-center justify-between pt-1">
+                  <div className="flex gap-3 text-xs text-gray-500">
+                    <span>{topic.concepts.length} concepts</span>
+                    {formulaCount > 0 && <span>{formulaCount} formulas</span>}
+                  </div>
+                  <span className="text-xs text-rose-500 group-hover:text-rose-400 transition-colors">
+                    Study &rarr;
+                  </span>
+                </div>
+              </Link>
+            )
+          })}
+        </div>
       </div>
 
       {/* Practice Questions Section */}

@@ -3,9 +3,10 @@ import { notFound } from 'next/navigation'
 import { portfolioManagementTopics } from '@/data/portfolio-management'
 import { ethicsTopics } from '@/data/ethics-professional-standards'
 import { economicsTopics } from '@/data/economics'
+import { fsaInventoriesTopics } from '@/data/fsa-inventories'
 import ConceptCard from '@/components/ConceptCard'
 
-const allTopics = [...portfolioManagementTopics, ...ethicsTopics, ...economicsTopics]
+const allTopics = [...portfolioManagementTopics, ...ethicsTopics, ...economicsTopics, ...fsaInventoriesTopics]
 
 export async function generateStaticParams() {
   return allTopics.map(t => ({ id: t.id }))
